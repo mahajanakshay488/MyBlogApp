@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>myBlog | app</title>
+    <link rel="stylesheet" href="../stylesheets/style.css">
+    <link rel="stylesheet" href="../stylesheets/allblogs.css">
+
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+</head>
+<body>
+    <% if(messages.notify){%>
+        <div class="notify">
+          <h4><%= messages.notify %></h4>
+          <i class="ri-close-line"></i>
+        </div>
+      <%} %>
+    <header>
+        <h2>All blogs <span>(<%= results.length %>)</span></h2>
+        <nav>
+            <div id="nav-links">
+              <a href="/">Home</a>
+              <!-- <a href="#">( New ) Featured Blogs</a> -->
+            </div>
+            <div id="nav-btns">
+              <% if(logedin){ %>
+                <a href="/profile">Profile</a>
+              <% } else{ %>
+              <a href="/register">Register</a>
+              <a href="/login">Login</a>
+              <% } %>
+            </div>
+           </nav>
+      
+    </header>
+    <main>
+        <% if(results !== undefined){%>
+          <% results.reverse().forEach(function(results){ %>
+            <div class="blog-example">
+             
+              <% if(logedin){ %>
+                <% if(results.like.indexOf(likedbyUser.id) !== -1){ %> 
+                  <span class="like" id="likedbyUser" ><%= results.like.length %><i class="ri-heart-fill"></i></span>
+                <% } else{ %> 
+                  <span class="like" ><%= results.like.length %><i class="ri-heart-line"></i></span>
+                <% } %>
+              <%} else { %>
+                <span class="like" ><%= results.like.length %><i class="ri-heart-line"></i></span>  
+              <% } %>
+
+              <div class="pic">
+                <img src=<%= results.author.profileImage %> alt="">
+              </div>
+              <div class="blog-content">
+                <h3><%= results.post%></h3>
+                <h5>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat, debitis?</h5>
+                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tempore enim sit assumenda quae. Sit debitis dicta, magni ducimus eligendi aliquam.</p>
+                <div class="icons">
+                  <a href=<%= '/allblogs/like/'+ results.id %>><i class="ri-user-heart-line"></i></a>
+                  <a href="#"><i class="ri-user-add-line"></i></a> 
+                </div>
+              </div>
+            </div>
+          <% }) %>
+        <%}else{%>
+          <h4>No Post Available !</h4>
+        <%} %>
+     </main>
+
+     <script>
+        var cross = document.querySelector('.notify i');
+        var notify = document.querySelector('.notify');
+        cross.addEventListener('click', function(){
+          notify.style.display = 'none';
+        });
+      </script>
+</body>
+</html>

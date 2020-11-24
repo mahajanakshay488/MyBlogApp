@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="../stylesheets/register.css">
+
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+</head>
+<body>
+    <div id="center">
+        <a href="/profile"><i class="ri-arrow-left-line"></i>Need not to update ? Go Back !</a>
+        
+        <form action=<%= '/updateduser/' +details.username %> method="POST">
+            <div class="formelem">
+                <label for="name">Full name</label>
+                <input type="text" name="name" placeholder="Full Name" value=<%= details.name %>>
+            </div>
+
+            <div class="formelem">
+                <label for="Username">Username</label>
+                <input type="text" name="username" placeholder="Username" value=<%= details.username %>>
+            </div>
+
+            <div class="formelem">
+                <label for="email">email</label>
+                <input type="email" name="email" placeholder="Email" value=<%= details.email %>>
+            </div>
+
+
+            <div class="formelem">
+                <input type="submit" value="Update">
+            </div>
+        </form>
+    </div>
+</body>
+</html>

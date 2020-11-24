@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="../stylesheets/register.css">
+    
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+</head>
+<body>
+    <div id="center">
+        <a href="/login"><i class="ri-arrow-left-line"></i>Already have an account ?</a>
+        
+        <!-- <form action="/registered" onsubmit="event.preventDefault(); myValidation();" method="POST"> -->
+          
+        <form action="/registered" method="POST">
+            <div class="formelem">
+                <label for="name">Full name</label>
+                <input type="text" name="name" placeholder="Full Name">
+            </div>
+
+            <div class="formelem">
+                <label for="Username">Username</label>
+                <input type="text" id="username" name="username" placeholder="Username">
+            </div>
+
+            <div class="formelem">
+                <label for="email">email</label>
+                <input type="email" name="email" placeholder="Email">
+            </div>
+
+            <div class="formelem">
+                <label for="password">Password</label>
+                <input type="password" name="password" placeholder="Password">
+            </div>
+
+            <div class="formelem">
+                <input type="submit" value="Register">
+            </div>
+        </form>
+    </div>
+
+    <!-- <script>
+  
+        var username = document.querySelector('#username');
+        
+        username.addEventListener( 'input' , function(){
+         
+          if(username.value.length > 0){
+    
+            var url = `/checkusername/${username.value}`;     
+    
+            axios.get(url)     
+            .then(function(status){
+              if(status.data.username === username.value){  
+                username.style.outlineColor = 'red';
+                username.style.borderColor = 'red';      
+              }         
+              else{
+                username.style.outlineColor = 'cornflowerblue'; 
+                username.style.borderColor = 'cornflowerblue';
+              }
+            });
+          }  
+          else {
+            username.style.outlineColor = 'cornflowerblue';
+          } 
+        });
+
+        function myValidation(){
+            if(username.style.outlineColor === 'red'){
+                alert("Invalid username, please try different.");
+                username.style.borderColor = 'red';
+                return false;
+            }
+            else return true;
+        }
+      
+      </script> -->
+</body>
+</html>

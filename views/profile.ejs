@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>profile</title>
+
+    <link rel="stylesheet" href="../stylesheets/profile.css">
+
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+</head>
+<body>
+    <nav>
+        <a href="/"><i class="ri-arrow-left-line"></i> Go to the home page</a>
+        <a href="/allblogs">All Blogs</a>
+    </nav>
+    <div id="container">
+        <% if(messages.status){ %>
+            <h4><%= messages.status %></h4>
+        <% }%>
+        <main>
+            <div id="left">
+                <div class="user-inf">
+                    <div id="profile-img"class="img">
+                        <form enctype="multipart/form-data" id="imgform"  action="/uploadimg" method="POST">
+                            <input type="file" name="imgfile" id="imgfile">
+                        </form>
+                        <img src=<%= details.profileImage%> alt="" >
+                        <div class="img-overlay">
+                            <i class="ri-add-circle-line"></i>
+                        </div>
+                    </div>
+                    <div class="text">
+                        <h2><%= details.name%></h2>
+                        <h4><%= details.email%></h4>
+                        <div class="profile-icon">
+                            <a href=<%= '/update/'+details.username %>><i class="ri-pencil-line"></i> Edit Profile</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="right">
+                <h1>All Posts</h1>
+                <form action="postblog" method="POST">
+                    <textarea name="post" id="postfield" placeholder="write your blog here" required></textarea>
+                    <button type="submit">Post it !</button>
+                </form>
+
+                <section id="posts">
+                    <% if(details.posts.length < 1){%>
+                        <h3>NO Posts Available !</h3>
+                    <%}else{%>
+                        <% details.posts.reverse().forEach(function(post){ %>
+                            <div class="post">
+                                <div class="top">
+                                   <div class="p-img">
+                                        <img src=<%= details.profileImage %> alt="">
+                                    </div>  
+                                    <h3><%= details.name %></h3>
+                                </div>
+                                <p><%= post.post %></p>
+                                <span class="like" id="likedbyUser" ><%= post.like.length %><i class="ri-heart-fill"></i></span>
+                                <div class="icon"><i class="ri-clipboard-line"></i></div>
+                            </div>
+                        <% }) %>
+                    <%}%>
+                    
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        var profileimg = document.querySelector('#profile-img');
+        var imgform = document.querySelector('#imgform');
+        var imgfile = document.querySelector('#imgfile');
+
+        profileimg.addEventListener('click', function(){
+            imgfile.click();
+        });
+
+        imgfile.addEventListener('change', function(){
+           imgform.submit();
+        });
+
+
+    </script>
+</body>
+</html>

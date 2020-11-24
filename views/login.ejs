@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="../stylesheets/login.css">
+
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+</head>
+<body>
+    <div id="login">
+        <a href="/"><i class="ri-arrow-left-line"></i> Go to home page</a>
+
+        <% if(messages.error){%>
+            <h4><%= messages.error %></h4>    
+        <%} %>
+
+        <h3>Login</h3>
+        <form action="/logedin" method="POST">
+            <input type="text" name="username" placeholder="username">
+            <input type="password" name="password" placeholder="password">
+            <input type="submit" value="Submit">
+        </form>
+        <a href="/register">Register New Account</a>
+        <a href="/forgotpassword">Forgot Password</a>
+    </div>
+</body>
+</html>
