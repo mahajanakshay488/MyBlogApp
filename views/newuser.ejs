@@ -8,6 +8,25 @@
   <link rel="stylesheet" href="../stylesheets/style.css">
 
   <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+
+
+
+<style>
+
+#recent{
+    background-color: white;
+}
+
+#recent a{
+    color: black;
+}
+
+.catg{
+    background-color: black;
+}
+
+</style>
+
 </head>
 <body>
   <% if(messages.notify){%>
@@ -20,7 +39,7 @@
      <nav>
       <a href="/">MyBlog</a>
       <div id="nav-links">
-        <a href="/allblogs">All Blogs by Users</a>
+        <a href="#">All Blogs by Users</a>
         <a href="#">( New ) Featured Blogs</a>
       </div>
       <div id="nav-btns">
@@ -40,39 +59,28 @@
       <div id="menu">
         <div id="extra">
           <div class="catg active">
-            <i class="ri-heart-line"></i> <h4>Liked Posts</h4>
+            <a href="/"><i class="ri-heart-line"></i> <h4>Liked Posts</h4></a>
           </div>
           <div class="catg">
-            <a href="/recent"><i class="ri-quill-pen-line"></i> <h4>Recent Posts</h4></a>
+            <a href="/recent"><i class="ri-quill-pen-line" ></i> <h4>Recent Posts</h4></a>
           </div>
-          <div class="catg">
-           <a href="/new-users"><i class="ri-user-heart-line"></i> <h4>New User</h4></a> 
+          <div class="catg" id="recent">
+            <a href="/new-users"><i class="ri-user-heart-line"></i> <h4>New User</h4></a>
           </div>
         </div>
        <main>
           <% if(results !== undefined){%>
             <% results.forEach(function(results){ %>
               <div class="blog-example">
-               
-                <% if(logedin){ %>
-                  <% if(results.like.indexOf(likedbyUser.id) !== -1){ %> 
-                    <span class="like" id="likedbyUser" ><%= results.like.length %><i class="ri-heart-fill"></i></span>
-                  <% } else{ %> 
-                    <span class="like" ><%= results.like.length %><i class="ri-heart-line"></i></span>
-                  <% } %>
-                <%} else { %>
-                  <span class="like" ><%= results.like.length %><i class="ri-heart-line"></i></span>  
-                <% } %>
-
                 <div class="pic">
-                  <img src=<%= results.author.profileImage %> alt="">
+                  <img src=<%= results.profileImage %> alt="">
                 </div>
                 <div class="blog-content">
-                  <h3><%= results.post%></h3>
+                  <h3><%= results.name%></h3>
                   <h5>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat, debitis?</h5>
                   <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tempore enim sit assumenda quae. Sit debitis dicta, magni ducimus eligendi aliquam.</p>
                   <div class="icons">
-                    <a href=<%= '/homepage/like/'+ results.id %>><i class="ri-user-heart-line"></i></a>
+                    <a href=<%= '/recent/like/'+ results.id %>><i class="ri-user-heart-line"></i></a>
                     <a href="#"><i class="ri-user-add-line"></i></a> 
                   </div>
                 </div>

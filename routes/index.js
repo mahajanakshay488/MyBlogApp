@@ -77,6 +77,25 @@ router.get('/recent', function(req, res){
   });
 });
 
+router.get('/new-users', function(req, res){
+  userModel.find().populate('author')
+  .then(function(foundUsers){
+    var recentUsers = foundUsers.slice(foundUsers.length-3, foundUsers.length).reverse();
+    if(req.isAuthenticated()){
+      userModel.findOne({username: req.session.passport.user})
+        .then(function(likedbyUser){
+          res.render('newuser', 
+            { logedin: true, 
+              likedbyUser: likedbyUser,
+              results: recentUsers
+            }); 
+        })
+    }else{
+      res.render('newuser', {logedin: false, results: recentUsers}); 
+    }  
+  });
+});
+
 router.get('/login', function(req, res){
   res.render('login');
 });
